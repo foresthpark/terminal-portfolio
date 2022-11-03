@@ -10,16 +10,16 @@ const Home: NextPage = () => {
   const [display, setDisplay] = useState("");
 
   const onSubmit = async (data: { command: string }) => {
+    if (Object.keys(outputs).indexOf(data.command) === -1) {
+      setDisplay("Command not found");
+      return;
+    }
+
     const output = await outputs[data.command]();
     console.log(
       "🚀🚀🚀🚀 ~ file: index.tsx ~ line 15 ~ onSubmit ~ output",
       output
     );
-
-    if (!output) {
-      setDisplay("Command not found");
-      return;
-    }
 
     setDisplay(output);
     reset();
