@@ -12,6 +12,7 @@ const Home: NextPage = () => {
   const onSubmit = async (data: { command: string }) => {
     if (Object.keys(outputs).indexOf(data.command) === -1) {
       setDisplay("Command not found");
+      reset();
       return;
     }
 
@@ -26,15 +27,27 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div>
-      <span className="mb-2 whitespace-pre-wrap text-term-yellow">
+    <div className="p-4">
+      {/* <span className="mb-2 whitespace-pre-wrap text-term-yellow">
         {display}
-      </span>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      </span> */}
+
+      <p
+        className="mb-2 whitespace-pre-wrap text-term-yellow"
+        style={{ lineHeight: "normal" }}
+        dangerouslySetInnerHTML={{ __html: display }}
+      />
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-row items-center justify-start gap-2"
+      >
         <LeftLane />
         <input
           {...register("command")}
-          className="block w-full rounded-md border-gray-300 caret-term-green shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          className="bg-transparent text-term-yellow caret-term-green shadow-sm focus:outline-none sm:text-sm"
+          autoCapitalize="off"
+          autoComplete="off"
+          autoCorrect="off"
         />
       </form>
     </div>
