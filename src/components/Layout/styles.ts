@@ -1,6 +1,10 @@
 import tw from "tailwind-styled-components";
 
-export const StyledMainContainer = tw.div`
+interface ILayoutProps {
+  [key: string]: unknown;
+}
+
+export const StyledMainContainer = tw.div<ILayoutProps>`
     min-w-max
     min-h-screen
     p-3
@@ -10,7 +14,7 @@ export const StyledMainContainer = tw.div`
     bg-term-background
 `;
 
-export const StyledBorderContainer = tw.div`
+export const StyledBorderContainer = tw.div<ILayoutProps>`
     min-h-screen    
     overflow-y-auto
     border-2

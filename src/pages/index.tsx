@@ -1,37 +1,34 @@
 import { type NextPage } from "next";
+import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import * as outputs from "@/constants/ouputs";
 import { useState } from "react";
 import LeftLane from "@/components/LeftLane/LeftLane";
-console.log("🚀 ~ file: index.tsx ~ line 4 ~ ouputs", outputs);
+
+interface ICommandSubmit {
+  command: string;
+}
 
 const Home: NextPage = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset } = useForm<ICommandSubmit>();
   const [display, setDisplay] = useState("");
 
-  const onSubmit = async (data: { command: string }) => {
-    if (Object.keys(outputs).indexOf(data.command) === -1) {
-      setDisplay("Command not found");
+  const onSubmit: SubmitHandler<ICommandSubmit> = ({ command }) => {
+    if (Object.keys(outputs).indexOf(command) === -1) {
+      setDisplay("Command not found. Trye 'help' for a list of commands.");
       reset();
       return;
     }
 
-    const output = await outputs[data.command]();
-    console.log(
-      "🚀🚀🚀🚀 ~ file: index.tsx ~ line 15 ~ onSubmit ~ output",
-      output
-    );
+    const output = outputs[command]();
 
     setDisplay(output);
     reset();
+    return;
   };
 
   return (
     <div className="p-4">
-      {/* <span className="mb-2 whitespace-pre-wrap text-term-yellow">
-        {display}
-      </span> */}
-
       <p
         className="mb-2 whitespace-pre-wrap text-term-yellow"
         style={{ lineHeight: "normal" }}
