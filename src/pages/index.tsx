@@ -13,14 +13,15 @@ const Home: NextPage = () => {
   const { register, handleSubmit, reset } = useForm<ICommandSubmit>();
   const [display, setDisplay] = useState("");
 
-  const onSubmit: SubmitHandler<ICommandSubmit> = ({ command }) => {
+  const onSubmit: SubmitHandler<ICommandSubmit> = async ({ command }) => {
     if (Object.keys(outputs).indexOf(command) === -1) {
       setDisplay("Command not found. Trye 'help' for a list of commands.");
       reset();
       return;
     }
 
-    const output = outputs[command]();
+    const output = await outputs[command]();
+    console.log("🚀 ~ file: index.tsx ~ line 24 ~ output", output);
 
     setDisplay(output);
     reset();
