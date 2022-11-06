@@ -20,6 +20,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           content="initial-scale=1.0, width=device-width"
           key="viewport"
         />
+        <title>Mori Shell Terminal</title>
       </Head>
       <Component {...pageProps} inputRef={inputRef} />
     </Layout>
