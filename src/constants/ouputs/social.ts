@@ -11,3 +11,9 @@ export const linkedin = async (): Promise<string> => {
 
   return "Opening linkedin...";
 };
+
+export const π = async (): Promise<string> => {
+  window.open(`https://github.com/π`);
+
+  return "Creating π art...";
+};

@@ -1,10 +1,10 @@
-import { atom, useAtom } from "jotai";
+import { atom } from "jotai";
 
 export interface HistoryState {
   id: number;
   date: Date;
   command: string;
-  output: unknown;
+  output: string;
 }
 
-export const historyAtom = atom<HistoryState | null>(null);
+export const historyAtom = atom<HistoryState[]>([]);

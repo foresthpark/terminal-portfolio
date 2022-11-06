@@ -1,12 +1,19 @@
 import Layout from "@/components/Layout/Layout";
 import { type AppType } from "next/dist/shared/lib/utils";
 import Head from "next/head";
+import { useRef } from "react";
 
 import "../styles/globals.css";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const onClickOutsideOfInput = () => {
+    inputRef?.current?.focus();
+  };
+
   return (
-    <>
+    <Layout onClick={onClickOutsideOfInput}>
       <Head>
         <meta
           name="viewport"
@@ -14,10 +21,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           key="viewport"
         />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </>
+      <Component {...pageProps} inputRef={inputRef} />
+    </Layout>
   );
 };
 

@@ -3,11 +3,12 @@ import { StyledBorderContainer, StyledMainContainer } from "./styles";
 
 interface Props {
   children: React.ReactNode;
+  onClick: () => void;
 }
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children, onClick }: Props) {
   return (
-    <StyledMainContainer>
+    <StyledMainContainer onClick={onClick}>
       <StyledBorderContainer>{children}</StyledBorderContainer>
     </StyledMainContainer>
   );

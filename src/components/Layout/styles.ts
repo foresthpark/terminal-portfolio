@@ -7,7 +7,7 @@ interface ILayoutProps {
 export const StyledMainContainer = tw.div<ILayoutProps>`
     min-w-max
     min-h-screen
-    p-3
+    p-4
     text-xs
     md:min-w-full
     md:text-base
@@ -15,7 +15,7 @@ export const StyledMainContainer = tw.div<ILayoutProps>`
 `;
 
 export const StyledBorderContainer = tw.div<ILayoutProps>`
-    min-h-screen    
+    h-full    
     overflow-y-auto
     border-2
     border-term-yellow

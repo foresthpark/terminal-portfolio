@@ -1,48 +1,73 @@
-import { type NextPage } from "next";
+import History from "@/components/History/History";
+import { historyAtom } from "@/components/History/History.jotai";
+import LeftLane from "@/components/LeftLane/LeftLane";
+import * as outputs from "@/constants/ouputs";
+import { StyledCommandInput } from "@/styles/StyledCommandInput";
+import commandExists from "@/utils/commandExists";
+import { useAtom } from "jotai";
+import { useEffect, useState } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
-import * as outputs from "@/constants/ouputs";
-import { useState } from "react";
-import LeftLane from "@/components/LeftLane/LeftLane";
 
 interface ICommandSubmit {
   command: string;
 }
 
-const Home: NextPage = () => {
-  const { register, handleSubmit, reset } = useForm<ICommandSubmit>();
+interface HomePageProps {
+  inputRef: React.MutableRefObject<HTMLInputElement>;
+}
+
+const Home = ({ inputRef }: HomePageProps) => {
+  const { register, handleSubmit, reset, watch, setFocus } =
+    useForm<ICommandSubmit>();
   const [display, setDisplay] = useState("");
+  const { ref, ...rest } = register("command");
+  const [history, setHistory] = useAtom(historyAtom);
+
+  useEffect(() => {
+    if (inputRef?.current) {
+      inputRef?.current?.focus();
+    }
+  }, [inputRef, setFocus]);
 
   const onSubmit: SubmitHandler<ICommandSubmit> = async ({ command }) => {
     if (Object.keys(outputs).indexOf(command) === -1) {
-      setDisplay("Command not found. Trye 'help' for a list of commands.");
+      setDisplay("Command not found. Try 'help' for a list of commands.");
       reset();
       return;
     }
 
     const output = await outputs[command]();
-    console.log("🚀 ~ file: index.tsx ~ line 24 ~ output", output);
+
+    const newHistory = {
+      id: history?.length,
+      date: new Date(),
+      command,
+      output,
+    };
 
     setDisplay(output);
+    setHistory((prev) => [...prev, newHistory]);
     reset();
     return;
   };
 
   return (
     <div className="p-4">
-      <p
-        className="mb-2 whitespace-pre-wrap text-term-yellow"
-        style={{ lineHeight: "normal" }}
-        dangerouslySetInnerHTML={{ __html: display }}
-      />
+      <History histories={history} />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-row items-center justify-start gap-2"
       >
         <LeftLane />
-        <input
-          {...register("command")}
-          className="bg-transparent text-term-yellow caret-term-green shadow-sm focus:outline-none sm:text-sm"
+        <StyledCommandInput
+          {...rest}
+          name="command"
+          ref={(e) => {
+            ref(e);
+            inputRef.current = e; // you can still assign to ref
+          }}
+          commandExists={commandExists(watch("command"))}
           autoCapitalize="off"
           autoComplete="off"
           autoCorrect="off"
