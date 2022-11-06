@@ -16,11 +16,13 @@ export default function History({ histories }: HistoryProps) {
               <LeftLane />
             </div>
 
-            <div className="flex-grow text-term-green">{history.command}</div>
+            <div className="flex-grow text-term-text-success-primary">
+              {history.command}
+            </div>
           </div>
           <div
             key={history.id}
-            className="mb-2 whitespace-pre-wrap text-term-yellow"
+            className="mb-2 whitespace-pre-wrap text-term-text-primary"
             style={{ lineHeight: "normal" }}
             dangerouslySetInnerHTML={{ __html: history.output }}
           />

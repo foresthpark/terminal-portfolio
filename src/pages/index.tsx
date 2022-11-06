@@ -1,15 +1,16 @@
 import History from "@/components/History/History";
 import { historyAtom } from "@/components/History/History.jotai";
 import LeftLane from "@/components/LeftLane/LeftLane";
-import * as outputs from "@/constants/ouputs";
+import * as outputs from "@/constants/outputs";
 import { StyledCommandInput } from "@/styles/StyledCommandInput";
 import commandExists from "@/utils/commandExists";
+import { handleTabCompletion } from "@/utils/handleTabCompletions";
 import { useAtom } from "jotai";
 import { useEffect, useRef } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 
-interface ICommandSubmit {
+export interface ICommandSubmit {
   command: string;
 }
 
@@ -18,7 +19,7 @@ interface HomePageProps {
 }
 
 const Home = ({ inputRef }: HomePageProps) => {
-  const { register, handleSubmit, reset, watch, setFocus } =
+  const { register, handleSubmit, reset, watch, setFocus, setValue } =
     useForm<ICommandSubmit>();
   const { ref, ...rest } = register("command");
   const [history, setHistory] = useAtom(historyAtom);
@@ -41,6 +42,12 @@ const Home = ({ inputRef }: HomePageProps) => {
       e.preventDefault();
 
       setHistory([]);
+    }
+
+    if (e.key === "Tab") {
+      e.preventDefault();
+
+      handleTabCompletion(watch("command"), setValue);
     }
   };
 

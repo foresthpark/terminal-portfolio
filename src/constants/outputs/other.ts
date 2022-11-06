@@ -1,4 +1,4 @@
-import * as outputs from "@/constants/ouputs";
+import * as outputs from "@/constants/outputs";
 
 export const help = async (): Promise<string> => {
   const commands = Object.keys(outputs).sort().join(", ");

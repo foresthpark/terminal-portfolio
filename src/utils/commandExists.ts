@@ -1,4 +1,4 @@
-import * as outputs from "@/constants/ouputs";
+import * as outputs from "@/constants/outputs";
 
 export default function commandExists(command: string): boolean {
   const commands = ["clear", ...Object.keys(outputs)];

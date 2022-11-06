@@ -18,7 +18,7 @@ export const StyledBorderContainer = tw.div<ILayoutProps>`
     h-full    
     overflow-y-auto
     border-2
-    border-term-yellow
+    border-term-text-primary
     rounded-md
     
 `;

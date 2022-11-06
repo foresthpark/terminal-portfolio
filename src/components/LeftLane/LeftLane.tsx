@@ -11,13 +11,13 @@ export default function LeftLane() {
 
   return (
     <div className="flex flex-row items-center text-center">
-      <span className="text-term-yellow">(base) </span>
+      <span className="text-term-text-primary">(base) </span>
       <span className="text-term-white">-</span>
-      <span className="text-term-brightRed">{hostName} </span>
+      <span className="text-term-text-secondary">{hostName} </span>
       <span className="text-term-white">-</span>
-      <span className="text-term-green">git:(</span>
-      <span className="text-term-yellow">master</span>
-      <span className="text-term-green">)</span>
+      <span className="text-term-text-success-primary">git:(</span>
+      <span className="text-term-text-primary">master</span>
+      <span className="text-term-text-success-primary">)</span>
     </div>
   );
 }
