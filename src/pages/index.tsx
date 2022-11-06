@@ -5,7 +5,7 @@ import * as outputs from "@/constants/ouputs";
 import { StyledCommandInput } from "@/styles/StyledCommandInput";
 import commandExists from "@/utils/commandExists";
 import { useAtom } from "jotai";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 
@@ -20,9 +20,15 @@ interface HomePageProps {
 const Home = ({ inputRef }: HomePageProps) => {
   const { register, handleSubmit, reset, watch, setFocus } =
     useForm<ICommandSubmit>();
-  const [display, setDisplay] = useState("");
   const { ref, ...rest } = register("command");
   const [history, setHistory] = useAtom(historyAtom);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo(0, containerRef?.current.scrollHeight);
+    }
+  }, [history]);
 
   useEffect(() => {
     if (inputRef?.current) {
@@ -30,30 +36,51 @@ const Home = ({ inputRef }: HomePageProps) => {
     }
   }, [inputRef, setFocus]);
 
-  const onSubmit: SubmitHandler<ICommandSubmit> = async ({ command }) => {
-    if (Object.keys(outputs).indexOf(command) === -1) {
-      setDisplay("Command not found. Try 'help' for a list of commands.");
-      reset();
-      return;
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "l" && e.ctrlKey) {
+      e.preventDefault();
+
+      setHistory([]);
     }
+  };
 
-    const output = await outputs[command]();
+  const onSubmit: SubmitHandler<ICommandSubmit> = async ({ command }) => {
+    switch (command) {
+      case "clear":
+        setHistory([]);
+        reset();
+        break;
+      default:
+        if (Object.keys(outputs).indexOf(command) === -1) {
+          const newHistory = {
+            id: history.length,
+            date: new Date(),
+            command,
+            output: "Command not found. Try 'help' for a list of commands.",
+          };
 
-    const newHistory = {
-      id: history?.length,
-      date: new Date(),
-      command,
-      output,
-    };
+          setHistory((prev) => [...prev, newHistory]);
+          reset();
+          return;
+        }
 
-    setDisplay(output);
-    setHistory((prev) => [...prev, newHistory]);
-    reset();
-    return;
+        const output = await outputs[command]();
+
+        const newHistory = {
+          id: history?.length,
+          date: new Date(),
+          command,
+          output,
+        };
+
+        setHistory((prev) => [...prev, newHistory]);
+        reset();
+        return;
+    }
   };
 
   return (
-    <div className="p-4">
+    <div ref={containerRef} className="h-full overflow-auto p-4">
       <History histories={history} />
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -71,6 +98,7 @@ const Home = ({ inputRef }: HomePageProps) => {
           autoCapitalize="off"
           autoComplete="off"
           autoCorrect="off"
+          onKeyDown={handleKeyDown}
         />
       </form>
     </div>
