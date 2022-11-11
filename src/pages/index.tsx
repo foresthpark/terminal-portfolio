@@ -101,7 +101,7 @@ const Home = ({ inputRef }: HomePageProps) => {
             ref(e);
             inputRef.current = e; // you can still assign to ref
           }}
-          commandExists={commandExists(watch("command"))}
+          commandexists={commandExists(watch("command"))}
           autoCapitalize="off"
           autoComplete="off"
           autoCorrect="off"

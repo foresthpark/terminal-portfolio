@@ -5,3 +5,4 @@ export * from "./social";
 export * from "./other";
 export * from "./ee";
 export * from "./music";
+export * from "./resume";
