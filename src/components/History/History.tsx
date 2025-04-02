@@ -1,6 +1,6 @@
 import React from "react";
 import LeftLane from "../LeftLane/LeftLane";
-import { HistoryState } from "./History.jotai";
+import { type HistoryState } from "./History.jotai";
 
 interface HistoryProps {
   histories: HistoryState[];
