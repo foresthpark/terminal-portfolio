@@ -6,11 +6,11 @@ export const github = async (): Promise<string> => {
   return "Opening github...";
 };
 
-export const linkedin = async (): Promise<string> => {
-  window.open(`https://www.linkedin.com/in/${config.social.linkedin}/`);
+// export const linkedin = async (): Promise<string> => {
+//   window.open(`https://www.linkedin.com/in/${config.social.linkedin}/`);
 
-  return "Opening linkedin...";
-};
+//   return "Opening linkedin...";
+// };
 
 export const π = async (): Promise<string> => {
   window.open(`https://github.com/π`);
