@@ -24,6 +24,7 @@ const Home = ({ inputRef }: HomePageProps) => {
   const { ref, ...rest } = register("command");
   const [history, setHistory] = useAtom(historyAtom);
   const containerRef = useRef<HTMLDivElement>(null);
+  const hasExecutedAutoCommand = useRef(false);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -36,6 +37,50 @@ const Home = ({ inputRef }: HomePageProps) => {
       inputRef?.current?.focus();
     }
   }, [inputRef, setFocus]);
+
+  const executeCommand = async (command: string) => {
+    switch (command) {
+      case "clear":
+        setHistory([]);
+        break;
+      default:
+        if (Object.keys(outputs).indexOf(command) === -1) {
+          setHistory((prev) => [...prev, {
+            id: prev.length,
+            date: new Date(),
+            command,
+            output: "Command not found. Try 'help' for a list of commands.",
+          }]);
+          return;
+        }
+
+        const output = await outputs[command]();
+
+        setHistory((prev) => [...prev, {
+          id: prev.length,
+          date: new Date(),
+          command,
+          output,
+        }]);
+        return;
+    }
+  };
+
+  useEffect(() => {
+    const handleAutoCommand = async () => {
+      if (hasExecutedAutoCommand.current) return;
+      
+      const hash = window.location.hash.substring(1);
+      if (hash && Object.keys(outputs).indexOf(hash) !== -1) {
+        hasExecutedAutoCommand.current = true;
+        await executeCommand(hash);
+        window.history.replaceState(null, '', window.location.pathname);
+      }
+    };
+
+    handleAutoCommand();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "l" && e.ctrlKey) {
@@ -52,38 +97,8 @@ const Home = ({ inputRef }: HomePageProps) => {
   };
 
   const onSubmit: SubmitHandler<ICommandSubmit> = async ({ command }) => {
-    switch (command) {
-      case "clear":
-        setHistory([]);
-        reset();
-        break;
-      default:
-        if (Object.keys(outputs).indexOf(command) === -1) {
-          const newHistory = {
-            id: history.length,
-            date: new Date(),
-            command,
-            output: "Command not found. Try 'help' for a list of commands.",
-          };
-
-          setHistory((prev) => [...prev, newHistory]);
-          reset();
-          return;
-        }
-
-        const output = await outputs[command]();
-
-        const newHistory = {
-          id: history?.length,
-          date: new Date(),
-          command,
-          output,
-        };
-
-        setHistory((prev) => [...prev, newHistory]);
-        reset();
-        return;
-    }
+    await executeCommand(command);
+    reset();
   };
 
   return (

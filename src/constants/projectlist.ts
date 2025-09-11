@@ -7,6 +7,18 @@ export interface Project {
 
 export const projectlist: Project[] = [
   {
+    name: "OSCEai Pro",
+    website: "https://osceaipro.com",
+    github: null,
+    tech: ["NextJS", "Tailwind CSS", "OpenAI", "NeonDB"],
+  },
+  {
+    name: "Petite URL",
+    website: "https://petite.forestp.dev",
+    github: null,
+    tech: ["NextJS", "BetterAuth", "NeonDB"],
+  },
+  {
     name: "Sharewear",
     website: "https://sharewearprofile.com",
     github: null,
@@ -54,11 +66,17 @@ export const projectlist: Project[] = [
     github: "",
     tech: ["Unreal Engine 4"],
   },
+  // {
+  //   name: "URL Shortener",
+  //   website: "https://tinyurl.forestparkdev.ca",
+  //   github: "https://github.com/foresthpark/tiny_url_maker",
+  //   tech: ["S3", "Lambda", "API Gateway", "DynamoDB", "Route 53"],
+  // },
   {
-    name: "URL Shortener",
-    website: "https://tinyurl.forestparkdev.ca",
-    github: "https://github.com/foresthpark/tiny_url_maker",
-    tech: ["S3", "Lambda", "API Gateway", "DynamoDB", "Route 53"],
+    name: "ClicBitz",
+    website: "https://clicbitz.com/",
+    github: null,
+    tech: ["Flutter", "Firebase"],
   },
   {
     name: "Google Gram",
@@ -71,11 +89,5 @@ export const projectlist: Project[] = [
     website: "https://foresthpark.github.io/PaintJS",
     github: "https://github.com/foresthpark/PaintJS",
     tech: ["HTML", "CSS", "JS"],
-  },
-  {
-    name: "ClicBitz",
-    website: "https://clicbitz.com/",
-    github: null,
-    tech: ["Flutter", "Firebase"],
   },
 ];
