@@ -7,6 +7,12 @@ export interface Project {
 
 export const projectlist: Project[] = [
   {
+    name: "Care Carry",
+    website: "https://care-carry.forestp.dev",
+    github: null,
+    tech: ["NextJS", "Tailwind CSS", "OpenAI", "NeonDB", "tRPC"],
+  },
+  {
     name: "OSCEai Pro",
     website: "https://osceaipro.com",
     github: null,
