@@ -82,12 +82,12 @@ export const projectlist: Project[] = [
     github: "https://github.com/foresthpark/terminal-portfolio",
     tech: ["Next.js", "Tailwind CSS"],
   },
-  {
-    name: "Music Player Prototype",
-    website: "https://arcadia.forestp.dev",
-    github: null,
-    tech: ["NextJS", "Redux Toolkit", "Tailwind CSS"],
-  },
+  // {
+  //   name: "Music Player Prototype",
+  //   website: "https://arcadia.forestp.dev",
+  //   github: null,
+  //   tech: ["NextJS", "Redux Toolkit", "Tailwind CSS"],
+  // },
   {
     name: "Keto Clock",
     website: "https://www.ketoclock.com",
@@ -124,16 +124,16 @@ export const projectlist: Project[] = [
     github: null,
     tech: ["Flutter", "Firebase"],
   },
-  {
-    name: "Google Gram",
-    website: "https://forest-firegram.web.app",
-    github: "https://github.com/foresthpark/google_gram",
-    tech: ["NextJS", "Firebase", "Clarifai"],
-  },
-  {
-    name: "PaintJS",
-    website: "https://foresthpark.github.io/PaintJS",
-    github: "https://github.com/foresthpark/PaintJS",
-    tech: ["HTML", "CSS", "JS"],
-  },
+  // {
+  //   name: "Google Gram",
+  //   website: "https://forest-firegram.web.app",
+  //   github: "https://github.com/foresthpark/google_gram",
+  //   tech: ["NextJS", "Firebase", "Clarifai"],
+  // },
+  // {
+  //   name: "PaintJS",
+  //   website: "https://foresthpark.github.io/PaintJS",
+  //   github: "https://github.com/foresthpark/PaintJS",
+  //   tech: ["HTML", "CSS", "JS"],
+  // },
 ];
