@@ -58,12 +58,12 @@ export const projectlist: Project[] = [
       "Stripe",
     ],
   },
-  {
-    name: "Petite URL",
-    website: "https://petite.forestp.dev",
-    github: null,
-    tech: ["NextJS", "Shadcn UI", "BetterAuth", "NeonDB"],
-  },
+  // {
+  //   name: "Petite URL",
+  //   website: "https://petite.forestp.dev",
+  //   github: null,
+  //   tech: ["NextJS", "Shadcn UI", "BetterAuth", "NeonDB"],
+  // },
   {
     name: "Sharewear",
     website: "https://sharewearprofile.com",
