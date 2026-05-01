@@ -7,6 +7,30 @@ export interface Project {
 
 export const projectlist: Project[] = [
   {
+    name: "Roll Lab",
+    website: "https://rolllab.app",
+    github: null,
+    tech: [
+      "React Vite",
+      "Tailwind CSS",
+      "React Native",
+      "NeonDB",
+      "Drizzle ORM",
+    ],
+  },
+  {
+    name: "What's In the Bag",
+    website: "https://whatsinthebag.app",
+    github: null,
+    tech: [
+      "React Vite",
+      "React Native",
+      "Tailwind CSS",
+      "NeonDB",
+      "Drizzle ORM",
+    ],
+  },
+  {
     name: "Care Carry",
     website: "https://care-carry.forestp.dev",
     github: null,
