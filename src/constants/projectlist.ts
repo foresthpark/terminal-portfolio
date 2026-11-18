@@ -1,11 +1,65 @@
 export interface Project {
   name: string;
-  website: string;
+  website?: string;
+  description?: string;
   github: string | null;
   tech: string[];
 }
 
 export const projectlist: Project[] = [
+  {
+    name: "Grain Issue",
+    description:
+      "A multi-tenant client portal for photography studios with booking, galleries, and print orders.",
+    github: null,
+    website: "https://grainissue.com",
+    tech: [
+      "React 19",
+      "TanStack Router",
+      "Vite",
+      "Tailwind CSS",
+      "Cloudflare Workers",
+      "Hono",
+      "Drizzle ORM",
+      "PostgreSQL",
+      "Fly.io",
+      "Stripe Billing",
+      "Stripe Connect",
+      "Cloudflare R2",
+    ],
+  },
+  {
+    name: "OSCEai Pro",
+    description:
+      "AI-assisted OSCE practice with real-time cases, automated feedback, and progress tracking.",
+    website: "https://osceaipro.com",
+    github: null,
+    tech: [
+      "NextJS",
+      "Shadcn UI",
+      "OpenAI",
+      "NeonDB",
+      "tRPC",
+      "BetterAuth",
+      "Stripe",
+    ],
+  },
+  {
+    name: "Care Carry",
+    description:
+      "A marketplace for Canadian families to find and book certified in-home caregivers.",
+    website: "https://care-carry.forestp.dev",
+    github: null,
+    tech: [
+      "NextJS",
+      "Shadcn UI",
+      "OpenAI",
+      "NeonDB",
+      "tRPC",
+      "NextAuth",
+      "Stripe",
+    ],
+  },
   {
     name: "Roll Lab",
     website: "https://rolllab.app",
@@ -20,6 +74,8 @@ export const projectlist: Project[] = [
   },
   {
     name: "What's In the Bag",
+    description:
+      "A photo-first app for reviewing and managing Too Good To Go surprise bags.",
     website: "https://whatsinthebag.app",
     github: null,
     tech: [
@@ -30,34 +86,6 @@ export const projectlist: Project[] = [
       "Drizzle ORM",
     ],
   },
-  {
-    name: "Care Carry",
-    website: "https://care-carry.forestp.dev",
-    github: null,
-    tech: [
-      "NextJS",
-      "Shadcn UI",
-      "OpenAI",
-      "NeonDB",
-      "tRPC",
-      "NextAuth",
-      "Stripe",
-    ],
-  },
-  {
-    name: "OSCEai Pro",
-    website: "https://osceaipro.com",
-    github: null,
-    tech: [
-      "NextJS",
-      "Shadcn UI",
-      "OpenAI",
-      "NeonDB",
-      "tRPC",
-      "BetterAuth",
-      "Stripe",
-    ],
-  },
   // {
   //   name: "Petite URL",
   //   website: "https://petite.forestp.dev",
@@ -66,18 +94,22 @@ export const projectlist: Project[] = [
   // },
   {
     name: "Sharewear",
+    description: "An NFC-enabled networking app for sharing contact details.",
     website: "https://sharewearprofile.com",
     github: null,
     tech: ["NextJS", "Shadcn UI", "NeonDB", "tRPC"],
   },
   {
     name: "Software Developers Calgary",
+    description:
+      "A community platform for learning, events, and mini hackathons.",
     website: "https://sdc.fyi/",
     github: null,
     tech: ["NextJS", "Tailwind CSS", "NeonDB", "tRPC"],
   },
   {
     name: "Terminal Portfolio",
+    description: "A portfolio presented as an interactive terminal.",
     website: "https://terminal.forestp.dev",
     github: "https://github.com/foresthpark/terminal-portfolio",
     tech: ["Next.js", "Tailwind CSS"],
