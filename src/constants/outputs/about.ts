@@ -1,4 +1,7 @@
-export const about = () => {
+import { escapeHtml, getProfile } from "../profile";
+
+export const about = async () => {
+  const profile = await getProfile();
   return `
   ███████╗ ██████╗ ██████╗ ███████╗███████╗████████╗
   ██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔════╝╚══██╔══╝
@@ -15,7 +18,9 @@ export const about = () => {
   ██║     ██║  ██║██║  ██║██║  ██╗
   ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝
 
-I'm a full-stack product engineer based in Vancouver, BC. I founded Grain Issue, a client portal for photography studios, and helped build OSCEai Pro, an AI-assisted practice platform for medical education.
+${profile
+  ? escapeHtml(`Based in ${profile.location}. ${profile.summary}`)
+  : "My profile is temporarily unavailable."}
 
 Type resume to open my full CV.
 

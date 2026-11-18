@@ -8,59 +8,6 @@ export interface Project {
 
 export const projectlist: Project[] = [
   {
-    name: "Grain Issue",
-    description:
-      "A multi-tenant client portal for photography studios with booking, galleries, and print orders.",
-    github: null,
-    website: "https://grainissue.com",
-    tech: [
-      "React 19",
-      "TanStack Router",
-      "Vite",
-      "Tailwind CSS",
-      "Cloudflare Workers",
-      "Hono",
-      "Drizzle ORM",
-      "PostgreSQL",
-      "Fly.io",
-      "Stripe Billing",
-      "Stripe Connect",
-      "Cloudflare R2",
-    ],
-  },
-  {
-    name: "OSCEai Pro",
-    description:
-      "AI-assisted OSCE practice with real-time cases, automated feedback, and progress tracking.",
-    website: "https://osceaipro.com",
-    github: null,
-    tech: [
-      "NextJS",
-      "Shadcn UI",
-      "OpenAI",
-      "NeonDB",
-      "tRPC",
-      "BetterAuth",
-      "Stripe",
-    ],
-  },
-  {
-    name: "Care Carry",
-    description:
-      "A marketplace for Canadian families to find and book certified in-home caregivers.",
-    website: "https://care-carry.forestp.dev",
-    github: null,
-    tech: [
-      "NextJS",
-      "Shadcn UI",
-      "OpenAI",
-      "NeonDB",
-      "tRPC",
-      "NextAuth",
-      "Stripe",
-    ],
-  },
-  {
     name: "Roll Lab",
     website: "https://rolllab.app",
     github: null,
@@ -106,13 +53,6 @@ export const projectlist: Project[] = [
     website: "https://sdc.fyi/",
     github: null,
     tech: ["NextJS", "Tailwind CSS", "NeonDB", "tRPC"],
-  },
-  {
-    name: "Terminal Portfolio",
-    description: "A portfolio presented as an interactive terminal.",
-    website: "https://terminal.forestp.dev",
-    github: "https://github.com/foresthpark/terminal-portfolio",
-    tech: ["Next.js", "Tailwind CSS"],
   },
   // {
   //   name: "Music Player Prototype",
